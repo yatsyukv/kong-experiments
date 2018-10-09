@@ -1,0 +1,29 @@
+{
+  "name": "kong-experiments",
+  "version": "1.0.0",
+  "description": "Some Kong experiments",
+  "main": "index.js",
+  "scripts": {
+    "kong-dashboard-start": "node ./node_modules/.bin/kong-dashboard start start --kong-url http://localhost:8201 --port 8202",
+    "start": "node app.js & npm run-script kong-dashboard-start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yatsyukv/kong-experiments.git"
+  },
+  "author": "Seva Yatsiuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yatsyukv/kong-experiments/issues"
+  },
+  "homepage": "https://github.com/yatsyukv/kong-experiments#readme",
+  "devDependencies": {
+    "kong-dashboard": "^3.5.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lodash": "^4.17.11"
+  }
+}
