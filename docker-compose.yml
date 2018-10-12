@@ -12,9 +12,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    ports:
+      - 8204:5432
     networks:
       - kong-net
-
   kong-migration:
     image: kong:latest
     container_name: kong-migration

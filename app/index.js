@@ -50,7 +50,7 @@ app.get('/ad-service/ads', (req, res) => {
 });
 
 app.post('/ad-service/ads', (req, res) => {
-    const ad = req.body();
+    const ad = req.body;
     ads.push(ad);
     res.json(ad)
 });
@@ -60,6 +60,7 @@ app.get('/ad-service/ads/:id', (req, res) => {
     const ad = _.find(ads, (a) => {
         return a.id === id
     });
+    //this should do a response body on the KONG level (append to response payload)
     res.json(ad)
 });
 
@@ -74,8 +75,8 @@ app.get('/api/user', (req, res) => {
 });
 
 app.post('/api/user', (req, res) => {
-    //this should do a request body transformation on the KONG level
-    res.json(req.body());
+    //this should do a response body on the KONG level (append to request payload)
+    res.json(req.body);
 });
 
 app.delete('/api/user', (req, res) => {
