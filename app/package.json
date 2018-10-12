@@ -4,8 +4,8 @@
   "description": "Some Kong experiments",
   "main": "index.js",
   "scripts": {
-    "kong-dashboard-start": "node ./node_modules/.bin/kong-dashboard start start --kong-url http://localhost:8201 --port 8202",
-    "start": "node app.js & npm run-script kong-dashboard-start",
+    "kong-dashboard-start": "node ./node_modules/.bin/kong-dashboard start start --kong-url http://kong:8001 --port 3001",
+    "start": "node index.js & npm run-script kong-dashboard-start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

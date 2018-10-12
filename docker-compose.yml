@@ -50,8 +50,23 @@ services:
       - KONG_ADMIN_LISTEN=0.0.0.0:8001
       - KONG_LOG_LEVEL=debug
     ports:
-      - 8201:8001
       - 8200:8000
+      - 8201:8001
+    networks:
+      - kong-net
+  web-app:
+    build: ./app
+    command: npm start
+    links:
+      - kong
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    ports:
+      - 8202:3000
+      - 8203:3001
+    depends_on:
+      - kong
     networks:
       - kong-net
 networks:
