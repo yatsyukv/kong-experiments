@@ -39,6 +39,8 @@ services:
     depends_on:
       kong-migration:
         condition: service_healthy
+    links:
+      - web-app
     healthcheck:
       test: "kong health"
       interval: 10s
@@ -57,16 +59,22 @@ services:
   web-app:
     build: ./app
     command: npm start
-    links:
-      - kong
     volumes:
       - ./app:/app
       - /app/node_modules
     ports:
       - 8202:3000
-      - 8203:3001
+    networks:
+      - kong-net
+  kong-dashboard:
+    image: pgbi/kong-dashboard
+    command: "start --kong-url http://kong:8001"
     depends_on:
       - kong
+    links:
+      - kong
+    ports:
+      - 8203:8080
     networks:
       - kong-net
 networks:
